@@ -14,7 +14,9 @@ func ConnectDatabase() {
 		panic("Failed to connect to database!")
 	}
 
-	database.AutoMigrate(&Odd{})
+	database.Exec("PRAGMA foreign_keys = ON")
+
+	database.AutoMigrate(&User{}, &Bet{}, &Odd{})
 
 	DB = database
 }
